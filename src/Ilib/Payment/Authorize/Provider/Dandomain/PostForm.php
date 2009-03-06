@@ -6,30 +6,36 @@ class Ilib_Payment_Authorize_Provider_Dandomain_PostForm extends Ilib_Payment_Au
     
     private $merchant;
     private $verification_key;
-    private $session_id;
-    private $url;
+    private $secure_url;
+    private $form;
     
-    public function construct($merchant, $verification_key, $session_id, $url)
+    public function __construct($merchant, $verification_key, $secure_url)
     {
-        
         $this->merchant = $merchant;
         $this->verification_key = $verification_key;
-        $this->session_id = $session_id;
+        $this->secure_url = $secure_url;
     }
-    
     
     /**
-     * Must return https://www.carmakoma.com/##language##/shop/onlinepayment/[identifier]/postform
+     * Given url https://www.carmakoma.com/da/shop/onlinepayment/[identifier]/postform
      */
-    public function getPlaceOrderRedirect($order_identifier, $language)
+    public function getRedirectUrlToPayment($order_identifier)
     {
-        
-        $url = str_replace('##language##', $language, $this->url);
-        $url = str_replace('##identifier##', $order_identifier, $url);
-        
-        return $url;
+        return $this->secure_url.'/shop/onlinepayment/'.$order_identifier.'/postform';
         
     }
     
+    public function getForm()
+    {
+        if(!isset($this->form)) {
+            $this->form = new Ilib_Payment_Authorize_Provider_Dandomain_PostForm_Form;
+        }
+        
+        return $this->form;
+    }
     
+    
+    
+    
+        
 }
