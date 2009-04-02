@@ -18,7 +18,7 @@
  * @category Payment
  * @license http://www.gnu.org/licenses/lgpl.html LGPL
  */
-class Ilib_Payment_Authorize_Provider_Dandomain_PostForm_Prepare extends Ilib_Payment_Authorize_Prepare
+class Ilib_Payment_Authorize_Provider_Dandomain_SecureTunnel_Prepare extends Ilib_Payment_Authorize_Prepare
 {
     /**
      * Contructor
@@ -63,7 +63,7 @@ class Ilib_Payment_Authorize_Provider_Dandomain_PostForm_Prepare extends Ilib_Pa
         $this->currency = $currency[$this->currency];
         
         $fields = '<input type="hidden" name="MerchantNumber" value="'.$this->merchant.'" />'.
-           '<input type="hidden" name="SessionID" value="0" />'.
+           '<input type="hidden" name="SessionID" value="'.session_id().'" />'.
            '<input type="hidden" name="OrderID" value="'.$this->order_number.'" />'.
            '<input type="hidden" name="Amount" value="'.$this->amount.'" />'.
            '<input type="hidden" name="CurrencyID" value="'.$this->currency.'" />'.
