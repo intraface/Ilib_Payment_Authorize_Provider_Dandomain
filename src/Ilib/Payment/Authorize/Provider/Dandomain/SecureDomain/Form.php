@@ -16,6 +16,8 @@ class Ilib_Payment_Authorize_Provider_Dandomain_SecureDomain_Form extends Ilib_P
     /**
      * Constructor
      * 
+     * @todo $errorpage is no longer the errorpage, but the base url of the payment. The errorpage url is created from this
+     *
      * @param string $merchant
      * @param string $verification_key
      * @param integer $order_number
@@ -58,6 +60,10 @@ class Ilib_Payment_Authorize_Provider_Dandomain_SecureDomain_Form extends Ilib_P
         
         $checksum = md5($this->order_number.'+'.$amount.'+'.$this->verification_key.'+'.$currency[$this->currency]);
         
+        /**
+         * @todo Here we create the error url from base url (errorpage)
+         */
+        $error_url = $this->errorpage.'/input?error=1';
         
         return '<input type="hidden" name="CurrencyID" title="CurrencyID" value="'.$currency[$this->currency].'" />' .
                 '<input type="hidden" name="MerchantNumber" value="'.$this->merchant.'" />' .
@@ -66,7 +72,7 @@ class Ilib_Payment_Authorize_Provider_Dandomain_SecureDomain_Form extends Ilib_P
                 '<input type="hidden" name="SessionId" value="'.session_id().'" />' .
                 '<input type="hidden" name="Checksum" value="'.$checksum.'" />' .
                 '<input type="hidden" name="OKURL" value="'.$this->okpage.'" />' .
-                '<input type="hidden" name="FAILURL" value="'.$this->errorpage.'" />' .
+                '<input type="hidden" name="FAILURL" value="'.$error_url.'" />' .
                 '<input type="hidden" name="OKStatusURL" value="'.$this->resultpage.'" />' .
                 '<input type="hidden" name="FAILStatusURL" value="'.$this->resultpage.'" />';
     }
