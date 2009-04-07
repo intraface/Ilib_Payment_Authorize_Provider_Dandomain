@@ -65,6 +65,11 @@ class Ilib_Payment_Authorize_Provider_Dandomain_SecureDomain_Form extends Ilib_P
          */
         $error_url = $this->errorpage.'/postform?error=1';
         
+        // Dandomain cannot make requests to secure page
+        if(substr($this->resultpage, 0, 8) == 'https://') {
+            $this->resultpage = 'http://'.substr($this->resultpage, 8);
+        }
+        
         return '<input type="hidden" name="CurrencyID" title="CurrencyID" value="'.$currency[$this->currency].'" />' .
                 '<input type="hidden" name="MerchantNumber" value="'.$this->merchant.'" />' .
                 '<input type="hidden" name="OrderID" value="'.$this->order_number.'" />' .
