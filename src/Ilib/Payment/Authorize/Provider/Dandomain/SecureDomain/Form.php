@@ -56,7 +56,7 @@ class Ilib_Payment_Authorize_Provider_Dandomain_SecureDomain_Form extends Ilib_P
             throw new Exception('Unsupported currency '.$this->currency);
         }
         
-        $amount = number_format($this->amount, 2, ',', '.');
+        $amount = number_format($this->amount, 2, ',', '');
         
         $checksum = md5($this->order_number.'+'.$amount.'+'.$this->verification_key.'+'.$currency[$this->currency]);
         
