@@ -63,7 +63,7 @@ class Ilib_Payment_Authorize_Provider_Dandomain_SecureDomain_Form extends Ilib_P
         /**
          * @todo Here we create the error url from base url (errorpage)
          */
-        $error_url = $this->errorpage.'/input?error=1';
+        $error_url = $this->errorpage.'/postform?error=1';
         
         return '<input type="hidden" name="CurrencyID" title="CurrencyID" value="'.$currency[$this->currency].'" />' .
                 '<input type="hidden" name="MerchantNumber" value="'.$this->merchant.'" />' .
