@@ -49,7 +49,8 @@ class Ilib_Payment_Authorize_Provider_Dandomain_SecureTunnel_Form extends Ilib_P
         $currency = array(
             'DKK' => '208',
             'EUR' => '978',
-            'USD' => '840'
+            'USD' => '840',
+            'GBP' => '826'
         );
         
         if(!isset($currency[$this->currency])) {

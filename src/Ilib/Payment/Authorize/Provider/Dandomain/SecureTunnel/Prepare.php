@@ -53,9 +53,11 @@ class Ilib_Payment_Authorize_Provider_Dandomain_SecureTunnel_Prepare extends Ili
     {
         $amount = number_format($this->amount, 2, ',', '');
         
-        $currency = array('DKK' => '208',
-            'EUR' => 978,
-            'USD' => 840);
+        $currency = array(
+            'DKK' => '208',
+            'EUR' => '978',
+            'USD' => '840',
+            'GBP' => '826');
         
         if (empty($currency[$this->currency])) {
             throw new Exception('Unknown currency "'.$this->currency.'"');
