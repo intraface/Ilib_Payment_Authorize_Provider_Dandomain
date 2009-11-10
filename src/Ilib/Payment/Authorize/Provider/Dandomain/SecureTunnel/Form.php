@@ -137,24 +137,6 @@ class Ilib_Payment_Authorize_Provider_Dandomain_SecureTunnel_Form extends Ilib_P
     }
     
     /**
-     * return the currency
-     * @return string
-     */
-    public function getCurrency()
-    {
-        return $this->currency;
-    }
-    
-    /**
-     * Returns the amount 
-     * @return float
-     */
-    public function getAmount()
-    {
-        return $this->amount;
-    }
-    
-    /**
      * Returns errore message if is set
      * @return string
      */
